@@ -28,11 +28,11 @@
 'description': """This Module is for training purposes.
 """,
 'category':'',
-'author': ' Likith',
+'author': ' Likith M',
 'website': 'www.zbeanztech.com',
 "license": "LGPL-3",
 'depends': [],
-'data': [Views/model_one_view.xml],
+'data': [],
 'test': [],
 'demo': [],
 'installable': True,
