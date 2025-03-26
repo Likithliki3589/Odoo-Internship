@@ -22,20 +22,24 @@
 
 
 {
-'name': 'Training Module March 2025',
-'version': '18.0.0.0',
-'summary': 'This Module is for training purposes.',
-'description': """This Module is for training purposes.
-""",
-'category':'',
-'author': ' Likith M',
-'website': 'www.zbeanztech.com',
-"license": "LGPL-3",
-'depends': [],
-'data': [],
-'test': [],
-'demo': [],
-'installable': True,
-'auto_install': False,
-'application': False,
+    'name': 'Training Module March 2025',
+    'version': '18.0.0.0',
+    'summary': 'This Module is for training purposes.',
+    'description': """This Module is for training purposes.
+    """,
+    'category':'',
+    'author': ' Likith M',
+    'website': 'www.zbeanztech.com',
+    "license": "LGPL-3",
+    'depends': [],
+    'data': [
+                'security/ir.model.access.csv',
+                'views/model_one_view.xml',
+                'views/menu.xml'
+    ],
+    'test': [],
+    'demo': [],
+    'installable': True,
+    'auto_install': False,
+    'application': False,
 }
