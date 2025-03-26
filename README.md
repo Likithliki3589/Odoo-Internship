@@ -1,2 +1,2 @@
 # Odoo-Internship
-ZB intern
+intern at Zestybeanz
