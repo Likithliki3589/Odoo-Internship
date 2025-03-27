@@ -23,6 +23,19 @@
 				</list>
 			</field>
 		</record>
+		
+		<!--action-->
+		<record id="action_for_model_one" model="ir.actions.act_window">
+			<field name="name"> Model One</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">model.one</field>
+			<field name="view_mode">list,form</field>
+			<field name="context">{}</field>
+			<field name="help" type="html">
+				<p>Model one has no data</p>
+			</field>
+		</record>
+
 	</data>
 </odoo>
-
+		
