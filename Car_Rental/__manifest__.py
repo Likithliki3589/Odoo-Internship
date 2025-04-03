@@ -1,0 +1,20 @@
+{
+    'name': 'Car Rental',
+    'version': '18.0.0.0',
+    'summary': 'Car rental management system',
+    'description': "Manage car rentals, availability, pricing, and bookings.",
+    'category': 'Sales',
+    'author': 'LIKITH-M',
+    'website': 'www.zbeanztech.com',
+    "license": "LGPL-3",
+    'depends': ['base'],
+    'data': [
+        'security/ir.model.access.csv',
+        'views/car_rental_views.xml',
+    ],
+    'test': [],
+    'demo': [],
+    'installable': True,
+    'autoinstall': False,
+    'application': False,
+}
