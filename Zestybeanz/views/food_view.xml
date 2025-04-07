@@ -11,15 +11,17 @@
 					<header>
 						<div class="custom-header-buttons">
 							<button name="create_sale_order" string="Create Sale Order" invisible="_sale_created == True" type="object" class="oe_highlight"/>
+							<button name="purchase_records" string="Purchase Orders"  type="object" class="oe_highlight"/>
+							<button name="change_the_record" string="Write the vals"  type="object" class="oe_highlight"/>
+							<button name="delet_the_rec" string="Delete"  type="object" class="oe_highlight"/>
 						</div>
 					</header>
-
 					<sheet>
                     <group>
                         <group>
                             <field name="partner_id" required="1"/>
                             <field name="price" />
-                            <field name="quantity" invisible="price == False"/>
+                            <field name="quantity" />
                             <field name="review" required="price == False"/>
                             <field name="is_satisfied" />
 							<field name="sale_order_id" />
@@ -34,6 +36,9 @@
                             <field name="types" />
                             <field name="images" />
                             <field name="blog" />
+                            <field name="date_of_birth" />
+                            <field name="age" />
+							
                         </group>
                     </group>
 
@@ -83,6 +88,7 @@
             parent="all_foods"
             action="action_for_food"
             sequence="1" />
+
 
 
 	</data>
