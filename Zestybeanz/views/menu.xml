@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <odoo>
     <!-- Parent Menu -->
     <menuitem id="menu_for_sample_module"
@@ -10,7 +9,13 @@
     <menuitem id="menu_for_model_one"
               name="Models "
               action="action_for_model_one"
-              parent="Zestybeanz.menu_for_sample_module"
+              parent="menu_for_sample_module"
               sequence="1"/>
+
+    <menuitem id="menu_for_model_one_lines"
+              name="Model Lines"
+              action="action_for_model_one_lines"
+              parent="menu_for_sample_module"
+              sequence="2"/>
               
 </odoo>
