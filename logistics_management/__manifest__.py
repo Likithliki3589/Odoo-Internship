@@ -1,0 +1,21 @@
+{
+    'name': 'Logistics Management',
+    'version': '18.0.0.0',
+    'summary': 'Manage Shipments and Logistics',
+    'author': 'LIKITH-M',
+    'website': 'www.zbeanztech.com',
+    "license": "LGPL-3",
+    'category': 'Operations',
+    'depends': ['base'],
+    'data': [
+        'security/ir.model.access.csv',
+        'views/actions.xml',
+        'views/shipment_views.xml',
+        'views/menu.xml',
+    ],
+     'test': [],
+    'demo': [],
+    'installable': True,
+    'autoinstall': False,
+    'application': False,
+}

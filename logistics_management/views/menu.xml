@@ -1,0 +1,8 @@
+<odoo>
+    <menuitem id="logistics_management_root" name="Logistics"/>
+
+    <menuitem id="logistics_shipments_menu"
+              name="Shipments"
+              parent="logistics_management_root"
+              action="action_logistics_shipment"/>
+</odoo>
