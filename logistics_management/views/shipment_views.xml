@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!-- Tree View -->
     <record id="view_logistics_shipment_list" model="ir.ui.view">
