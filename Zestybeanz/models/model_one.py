@@ -18,8 +18,6 @@ class ModelOne(models.Model):
     sale_ids = fields.Many2many('sale.order','model_one_sale_rel','model_one_id','sale_id', string="Sale")
 
 
-
-
     @api.model
     def create(self,vals):
         print('----------', self.env['ir.sequence'])
@@ -27,7 +25,6 @@ class ModelOne(models.Model):
         res = super(ModelOne,self).create(vals)
         return res
    
-
 class ModelOneLines(models.Model):
 	
 	_name = "model.one.lines"
@@ -36,5 +33,4 @@ class ModelOneLines(models.Model):
 	name = fields.Char(string="Name", help='You can add your name here')
 	price = fields.Float(string="Price")
 	product_id = fields.Many2one('product.template', string="Product")
-	model_one_id = fields.Many2one('model.one', string="Model One", domain="[('gender', '=', 'female'),('age', '>', 18)]")
-      	
+	model_one_id = fields.Many2one('model.one', string="Model One", domain="[('gender', '=', 'female'),('age', '>', 18)]")  	
