@@ -20,7 +20,7 @@
 ##############################################################################
 
 {
-'name': 'Sample Module',
+    'name': 'Sample Module',
 	'version': '18.0.1.0',
 	'summary': 'This Module for training purpose',
 	'description': """This Module for training purpose.
@@ -34,6 +34,7 @@
 	'data': [   'security/ir.model.access.csv',
                 'security/security.xml',
                 'data/sequence.xml',
+                'wizard/sample_wizard_view.xml',
 		        'views/model_one_view.xml',
                 'views/model_one_lines.xml',
                 'views/food_view.xml',

@@ -17,5 +17,11 @@
               action="action_for_model_one_lines"
               parent="menu_for_sample_module"
               sequence="2"/>
+
+      <menuitem id="menu_for_sample_wizard"
+              name="My wizard"
+              action="action_for_sample_wizard"
+              parent="menu_for_sample_module"
+              sequence="3"/>         
               
 </odoo>
