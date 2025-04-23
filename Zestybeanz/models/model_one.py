@@ -43,7 +43,7 @@ class ModelOne(models.Model):
         #self.write({'model_one_line_ids' : [[6, 0, ex_line]]})     
 
     def helloworld(self):
-        print("hello world")
+        print("hello world")  
 
     def show_wizard(self):
 	    return {
