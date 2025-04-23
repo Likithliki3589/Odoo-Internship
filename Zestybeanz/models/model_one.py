@@ -18,28 +18,27 @@ class ModelOne(models.Model):
     sale_id = fields.Many2one('sale.order', string="Sales")
 
     def write_values(self):
-		#special commands for writing to relational fields
-		#1. many2many fields
+        #special commands for writing to relational fields
+        #1. many2many fields
         products = self.env['product.template'].search([('list_price', '>', 200)], limit=1).id
         order = self.env['sale.order'].search([('id', '=', 26)], limit=1).id
-		#self.write({'product_ids' : [[6, 0, products]]})                                        #replace existing values with new values - syntax : [6, 0, [IDs]]
-		#self.write({'product_ids' : [[5]]})                                                     #unlink all records                      - syntax : [5]
-        self.write({'product_ids' : [[4, products]]})                                           #link valus to an existing record        - syntax : [4, ID]
-		#self.write({'product_ids' : [[3, products]]})                                           #unlink a record (don't delete)          - syntax : [3, ID]
+        #self.write({'product_ids' : [[6, 0, products]]})                                        #replace existing values with new values - syntax : [6, 0, [IDs]]
+        #self.write({'product_ids' : [[5]]})                                                     #unlink all records                      - syntax : [5]
+        #self.write({'product_ids' : [[4, products]]})                                           #link valus to an existing record        - syntax : [4, ID]
+        #self.write({'product_ids' : [[3, products]]})                                           #unlink a record (don't delete)          - syntax : [3, ID]
         #self.write({'sale_ids' : [[2, order]]})                                                 #unlinks and deletes the record          - syntax : [2, ID]
         #self.write({'product_ids' : [[0, 0, {'name': 'Test Product', 'list_price':200}]]})        
 		
-		#2. one2many fields
-		#self.write({'model_one_line_ids' : [[0, 0, {'name': 'Test 1', 'product_id':products, 'price': 250}]]})    
-		#line = self.model_one_line_ids.filtered(lambda l : l.price == 300).id
-		#existing_line = self.env['model.one.lines'].search([('price', '=', 300)], limit=1).id
+        #2. one2many fields 
+        #self.write({'model_one_line_ids' : [[0, 0, {'name': 'Test 1', 'product_id':products, 'price': 250}]]})    
+        #line = self.model_one_line_ids.filtered(lambda l : l.price == 300).id
+        existing_line = self.env['model.one.lines'].search([('price', '=', 300)], limit=1).id
         #ex_line = self.env['model.one.lines'].search([('model_one_id', '=', False)], limit=1).id
-
-		#self.write({'model_one_line_ids' : [[1, line, {'price': 350}]]}) 
-		#self.write({'model_one_line_ids' : [[2, line]]})  
-		#self.write({'model_one_line_ids' : [[3, line]]})  
-		#self.write({'model_one_line_ids' : [[4, existing_line]]})  
-		#self.write({'model_one_line_ids' : [[4, ex_line]]})  
+        #self.write({'model_one_line_ids' : [[1, line, {'price': 350}]]}) 
+        #self.write({'model_one_line_ids' : [[2, line]]})  
+        #self.write({'model_one_line_ids' : [[3, line]]})  
+        self.write({'model_one_line_ids' : [[4, existing_line]]})  
+        #self.write({'model_one_line_ids' : [[4, ex_line]]})  
         #self.write({'model_one_line_ids' : [[6, 0, ex_line]]})     
 
     def helloworld(self):
