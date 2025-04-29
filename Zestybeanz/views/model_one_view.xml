@@ -8,7 +8,7 @@
 			<field name="arch" type="xml">
 				<form string='Model One'>
 				   <header>
-						<button name="helloworld" string="Hello World" type="object" class="btn-primary" />
+						
 						<button name="show_wizard" string="Show Wizard" type="object" class="btn-secondary" />
 						<button name="%(Zestybeanz.action_for_sample_wizard)d" string="Wizard Action Button" type="action" class="oe_highlight" />
 						<button name="%(sale.action_quotations_with_onboarding)d" string="Sale Order" type="action" class="oe_highlight" />
@@ -18,26 +18,31 @@
 					<sheet>
 						<group>
 						<group>
-						    <field name="seq" readonly="1" />
+						    <field name="seq"  readonly="1" />
 							<field name="name" string="Display Name" />
-							<field name="age" readonly="1"  />
+							<field name="dob"  string="Date of Birth"/>
+							<field name="age"  readonly="1"  />
 							<field name="description" />
+							<field name="email" />
 							<field name="product_ids" widget="many2many_tags" />	
 							<field name="sale_ids" widget="many2many_tags" />
 							<field name="sale_id" domain="[('state', '=', 'sale'),('user_id', '=', 2)]" />
 						</group>
 						<group>
 							<field name="gender" />
+							<field name="is_special" />	
 							<field name="active" />	
 							<field name="date" />	
 							<field name="create_uid" />
 							<field name="partner_ids" widget="many2many_tags" />
+							<field name="partner_count" />	
 						</group>
 					</group>
                         <notebook>
 						<page string="Model One Lines">
 							<field name="model_one_line_ids" >
 								<list editable="bottom">
+								    <field name="id" />
 									<field name="name" />
 									<field name="product_id"  />
 									<field name="price"  />
@@ -58,8 +63,10 @@
 				<list string='Model One'>
 				    <field name="seq" />
 					<field name="name" string="Name" />
+					<field name="dob" string="Date of Birth"/>
 					<field name="age"  />
 					<field name="description"/>
+					<field name="email" />
 					<field name="gender" />
 					<field name="active" />	
 					<field name="sale_ids" widget="many2many_tags" />
@@ -78,6 +85,7 @@
 			<field name="arch" type="xml">
 				<kanban string='Model One'>
 					<field name="name" />
+					<field name="dob" />
 					<field name="age" />
 					<field name="gender" />
 					<templates>
@@ -86,6 +94,7 @@
 								<div class="oe_kanban_details">
 									<ul>
 										<li>Name: <field name="name" /></li>
+										<li>Date of Birth: <field name="dob" /></li>
 										<li>Age: <field name="age" /></li>
 										<li>Gender: <field name="gender" /></li>
 									</ul>									
@@ -104,6 +113,7 @@
 			<field name="arch" type="xml">
 				<search string='Model One'>
 					<field name="name" string="Name" />
+					 <field name="dob" string="Date of Birth"/>
 					<field name="age"  />
 					<!--Filters-->
 					<filter string="Archived" name="archived" domain="[('active', '=', False)]" />

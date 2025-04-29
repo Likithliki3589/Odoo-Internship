@@ -1,4 +1,6 @@
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError 
+from datetime import date
 
 class ModelOne(models.Model):
     _name = "model.one"
@@ -6,8 +8,10 @@ class ModelOne(models.Model):
 
     seq = fields.Char(string="sequence")
     name = fields.Char(string="Name", help='You can add your name here', copy=False)
-    age = fields.Integer(string="Age", default=18)
+    dob = fields.Date(string="Date of Birth")  # DOB Field
+    age = fields.Integer(string="Age", default=18, compute='_compute_age', store=True)  # Computed Field
     gender = fields.Selection([('male', 'Male'), ('female', 'Female'), ('other', 'Other')], string="Gender", required=True, copy=False)
+    email = fields.Char(string="Email")
     active = fields.Boolean("Active")
     description = fields.Text("Description", default="Test Description")
     date = fields.Date(string="Date", required=True)
@@ -16,10 +20,32 @@ class ModelOne(models.Model):
     model_one_line_ids = fields.One2many('model.one.lines', 'model_one_id', string="Product")
     sale_ids = fields.Many2many('sale.order','model_one_sale_rel','model_one_id','sale_id', string="Sale order")
     sale_id = fields.Many2one('sale.order', string="Sales")
+    partner_count = fields.Integer(string="Partner Count", compute="get_partner_count")
+    is_special = fields.Boolean('Is Special')
 
+
+
+    # -----------------------------------------------------------------------
+	# Odoo Command Tuples for One2many and Many2many Fields
+	# -----------------------------------------------------------------------
+	# Syntax                  Description                          Use With
+	# (0, 0, {values})        Create a new record                  O2M, M2M
+	# (1, id, {values})       Update an existing record            O2M
+	# (2, id)                 Delete and unlink existing record    O2M, M2M
+	# (3, id)                 Unlink (do not delete) record        O2M, M2M
+	# (4, id)                 Link to an existing record           O2M, M2M
+	# (5,)                    Unlink all                           M2M
+	# (6, 0, [ids])           Replace all links with given records O2M, M2M
+	# -----------------------------------------------------------------------
+
+
+
+
+    # method for writing to relational fields (m2m & o2m)
     def write_values(self):
         #special commands for writing to relational fields
         #1. many2many fields
+
         products = self.env['product.template'].search([('list_price', '>', 200)], limit=1).id
         order = self.env['sale.order'].search([('id', '=', 26)], limit=1).id
         #self.write({'product_ids' : [[6, 0, products]]})                                        #replace existing values with new values - syntax : [6, 0, [IDs]]
@@ -30,20 +56,22 @@ class ModelOne(models.Model):
         #self.write({'product_ids' : [[0, 0, {'name': 'Test Product', 'list_price':200}]]})        
 		
         #2. one2many fields 
+
         #self.write({'model_one_line_ids' : [[0, 0, {'name': 'Test 1', 'product_id':products, 'price': 250}]]})    
         #line = self.model_one_line_ids.filtered(lambda l : l.price == 300).id
-        existing_line = self.env['model.one.lines'].search([('price', '=', 300)], limit=1).id
-        #ex_line = self.env['model.one.lines'].search([('model_one_id', '=', False)], limit=1).id
+        #existing_line = self.env['model.one.lines'].search([('price', '=', 300)], limit=1).id
+        ex_line = self.env['model.one.lines'].search([('model_one_id', '=', False)], limit=1).id
         #self.write({'model_one_line_ids' : [[1, line, {'price': 350}]]}) 
         #self.write({'model_one_line_ids' : [[2, line]]})  
         #self.write({'model_one_line_ids' : [[3, line]]})  
-        self.write({'model_one_line_ids' : [[4, existing_line]]})  
+        #self.write({'model_one_line_ids' : [[4, existing_line]]})  
         #self.write({'model_one_line_ids' : [[4, ex_line]]})  
-        #self.write({'model_one_line_ids' : [[6, 0, ex_line]]})     
+        self.write({'model_one_line_ids' : [[6, 0, ex_line]]})     
 
-    def helloworld(self):
-        print("hello world")  
+   
 
+
+    # display a wizard through button action
     def show_wizard(self):
 	    return {
             'type': 'ir.actions.act_window',
@@ -52,16 +80,66 @@ class ModelOne(models.Model):
             'view_mode': 'form',
             'view_id': self.env.ref('Zestybeanz.view_form_sample_wizard').id,
             'target': 'new',
-            'context' : {'default_name': 'Likith'}
+            'context' : {
+                 'default_name': self.name,
+                 'default_dob': self.dob  # Pass the dynamic value of the DOB field
+                 }
         }
     
+    
+    @api.depends('dob')
+    def _compute_age(self):
+       for rec in self:
+        if rec.dob:
+            today = date.today()
+            rec.age = today.year - rec.dob.year - ((today.month, today.day) < (rec.dob.month, rec.dob.day))
+        else:
+             rec.age = 0
 
+
+    # @api method decorators
+	#1. @api.model : model level operations, don't need recordsets
+     
     @api.model
     def create(self,vals):
         print('----------', self.env['ir.sequence'])
         vals['seq'] = self.env['ir.sequence'].next_by_code('sequence.model.one')
         res = super(ModelOne,self).create(vals)
         return res
+	
+    
+
+    #2. @api.depends : define dependencies between models and fields
+    @api.depends('partner_ids')
+    def get_partner_count(self):
+        for record in self:
+            if record.partner_ids:
+                record.partner_count = len(record.partner_ids)
+            else:
+                record.partner_count = 0
+	
+    #3. @api.onchange : execute your logic when there is a change in a field
+    @api.onchange('gender')
+    def onchange_gender(self):
+        for record in self:
+            if record.gender == 'other':
+                record.is_special = True
+            else:
+                record.is_special = False
+
+    def increase_age(self):
+        for record in self:
+            record.age += 1
+	
+    @api.constrains('email')
+    def check_email(self):
+        for record in self:
+            if not record.email.endswith('@gmail.com'):
+                raise ValidationError("This email doesn't end with @gmail.com. Please enter a valid email address.")
+	
+    _sql_constraints = [
+        ('unique_email_user', 'unique (email)', 'This email already exists. Email must be unique'),
+    ]
 
 class ModelOneLines(models.Model):
 	

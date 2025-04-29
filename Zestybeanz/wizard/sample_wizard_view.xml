@@ -10,6 +10,8 @@
                     <sheet>
                         <group>
                             <field name="name"/>
+                            <field name="dob" />
+                            <field name="age" />
                         </group>
                     </sheet>
                 </form>
