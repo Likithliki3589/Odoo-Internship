@@ -175,5 +175,16 @@
 				<p>Model one for has no data</p>
 			</field>
 		</record>
+
+
+		 <record id="action_increase_age_model_one" model="ir.actions.server">
+			<field name="name">Change Description</field>
+			<field name="model_id" ref="Zestybeanz.model_model_one" />
+			<field name="binding_model_id" ref="Zestybeanz.model_model_one" />
+			<field name="state">code</field>
+			<field name="code">action = records.change_description()</field>
+		</record>
+
 	 </data>
 </odoo>
+

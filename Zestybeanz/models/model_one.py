@@ -126,20 +126,38 @@ class ModelOne(models.Model):
                 record.is_special = True
             else:
                 record.is_special = False
+                
 
-    def increase_age(self):
-        for record in self:
-            record.age += 1
-	
+    #4. @api.constrains : to set some constrainst or conitions on specified fields
     @api.constrains('email')
     def check_email(self):
         for record in self:
             if not record.email.endswith('@gmail.com'):
                 raise ValidationError("This email doesn't end with @gmail.com. Please enter a valid email address.")
 	
+    #4. _sql_constrains : to set database related constraints like unique, etc.
     _sql_constraints = [
         ('unique_email_user', 'unique (email)', 'This email already exists. Email must be unique'),
     ]
+
+
+    #def increase_age(self):
+        #for record in self:
+            #record.age += 1
+	
+
+    # method for scheduler
+    def increase_age(self):
+        records = self.search([]) # fetch all records
+        for record in records:
+            print("age before :", record.age)
+            record.age += 1
+            print("age after :", record.age)    
+	
+    def change_description(self):
+        for record in self:
+            record.description = "Description added through server action"
+	
 
 class ModelOneLines(models.Model):
 	
