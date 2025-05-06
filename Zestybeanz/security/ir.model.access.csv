@@ -4,5 +4,6 @@ access_model_one,access.model.one,model_model_one,Zestybeanz.group_sample_module
 access_model_one_user,access.model.one.user,model_model_one,Zestybeanz.sub_group_sample_module,1,1,1,1
 access_model_one_lines,access.model.one_lines,model_model_one_lines,Zestybeanz.group_sample_module,1,1,1,1
 access_sample_wizard,access.sample_wizard,model_sample_wizard,,1,1,1,1
+access_my_employee,access.my_employee,model_my_employee,,1,1,1,1
 
 access_food_food,access.food.food,model_food_food,,1,1,1,1

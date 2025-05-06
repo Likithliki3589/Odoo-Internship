@@ -18,10 +18,16 @@
               parent="menu_for_sample_module"
               sequence="2"/>
 
-      <menuitem id="menu_for_sample_wizard"
+     <menuitem id="menu_for_sample_wizard"
               name="My wizard"
               action="action_for_sample_wizard"
               parent="menu_for_sample_module"
-              sequence="3"/>         
-              
+              sequence="3"/>  
+             
+     <menuitem id="menu_for_my_employee"
+              name="Employee"
+	      action="action_for_my_employee"
+	      parent='menu_for_sample_module'
+	      sequence="4" /> 
+                       
 </odoo>

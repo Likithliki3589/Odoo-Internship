@@ -157,6 +157,12 @@ class ModelOne(models.Model):
     def change_description(self):
         for record in self:
             record.description = "Description added through server action"
+        
+    def send_my_email(self):
+        template = self.env.ref('Zestybeanz.my_sample_email_template')
+        for record in self:
+            values = {'subject' : 'My Custom Subject via Method'}
+            template.send_mail(record.id, force_send=True, email_values=values)
 	
 
 class ModelOneLines(models.Model):
@@ -167,4 +173,4 @@ class ModelOneLines(models.Model):
 	name = fields.Char(string="Name", help='You can add your name here')
 	price = fields.Float(string="Price")
 	product_id = fields.Many2one('product.template', string="Product")
-	model_one_id = fields.Many2one('model.one', string="Model One", domain="[('gender', '=', 'female'),('age', '>', 18)]")  	
+	model_one_id = fields.Many2one('model.one', string="Model One", domain="['|',('gender', '=', 'female'),('age', '>', 18)]")  	
