@@ -5,7 +5,7 @@ class MyEmployee(models.Model):
 	_name = "my.employee"
 	_description = "Employee"
 	
-	name = fields.Char(string="Name", required=True)
+	employee_name = fields.Char(string="Employee Name", required=True)
 	designation = fields.Char(string="Designation")
 	phone_number = fields.Integer(string="Phone")
 	address = fields.Text("Description")

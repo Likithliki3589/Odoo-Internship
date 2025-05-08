@@ -5,6 +5,8 @@ from datetime import date
 class ModelOne(models.Model):
     _name = "model.one"
     _description = "Model One"
+    _inherits = {'my.employee': 'employee_id'}
+
 
     seq = fields.Char(string="sequence")
     name = fields.Char(string="Name", help='You can add your name here', copy=False)
@@ -22,6 +24,7 @@ class ModelOne(models.Model):
     sale_id = fields.Many2one('sale.order', string="Sales")
     partner_count = fields.Integer(string="Partner Count", compute="get_partner_count")
     is_special = fields.Boolean('Is Special')
+    employee_id = fields.Many2one('my.employee', string="Employee")
 
 
 

@@ -13,7 +13,7 @@
 					<sheet>
 						<group>
 						<group>
-							<field name="name" />
+							<field name="employee_name" />
 							<field name="designation"  />
 							<field name="phone_number"  />
 							<field name="address"  />
@@ -30,9 +30,9 @@
 			<field name="model">my.employee</field>
 			<field name="arch" type="xml">
 				<list string='Employee'>
-					<field name="name" />
+					<field name="employee_name" />
 					<field name="designation"  />
-					<field name="designation"  />
+					<field name="phone_number"  />
 					<field name="address"  />
 				</list>
 			</field>
