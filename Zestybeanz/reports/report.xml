@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_model_one" model="ir.actions.report">
+        <field name="name">Model One PDF Report</field>
+        <field name="model">model.one</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">Zestybeanz.model_one_pdf_report</field>
+        <field name="report_file">Zestybeanz.model_one_pdf_report</field>
+		<field name="binding_model_id" ref="Zestybeanz.model_model_one" />
+    </record>
+    
+</odoo>
