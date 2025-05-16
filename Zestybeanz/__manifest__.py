@@ -37,6 +37,7 @@
                 'data/cron.xml',
                 'data/my_mail_template.xml',
                 'reports/model_one_qweb_report.xml',
+                'reports/sale_order_report.xml',
 				'reports/report.xml',
                 'wizard/sample_wizard_view.xml',
 		        'views/model_one_view.xml',

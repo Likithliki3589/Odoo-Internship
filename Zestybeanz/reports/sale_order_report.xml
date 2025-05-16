@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	
+	<template id="sample_pdf_quote_temp_change" inherit_id="sale.report_saleorder_document">
+			<xpath expr="//t[@t-set='information_block']/strong/t" position="attributes">
+				<attribute name="style">color: red</attribute>
+			</xpath>
+	</template>
+</odoo>
