@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="sample_module_category" model="ir.module.category">
+		<field name="name">My Training Module</field>
+		<field name="description">Category for Training purposes</field>
+		<field name="sequence">45</field>
+	</record>
+
+	<record id="group_sample_module" model="res.groups">
+		<field name="name">Sample Group</field>
+		<field name="category_id" ref="sample_module_category" />
+	</record>
+ 
+	<record id="sub_group_sample_module" model="res.groups">
+		<field name="name">Sample Sub Group</field>
+		<field name="category_id" ref="sample_module_category" />
+		<field name="implied_ids" eval="[(4, ref('zestybeanz.group_sample_module'))]" />
+         
+	</record>
+
+	<!-- Rule for Admins: See all records -->
+	
+    <record id="record_rule_for_model_one" model="ir.rule">
+		<field name="name"> Rule for Model One</field>
+		<field name="model_id" ref="zestybeanz.model_model_one" />
+		<field name="groups" eval="[(4, ref('zestybeanz.group_sample_module'))]" />
+		<field name="domain_force">[('create_uid', '=', user.id)]</field>
+		<field name="perm_create" eval="1" />
+		<field name="perm_write" eval="1" />
+		<field name="perm_unlink" eval="1" />
+		<field name="perm_read" eval="1" />
+	</record>
+ 
+</odoo>

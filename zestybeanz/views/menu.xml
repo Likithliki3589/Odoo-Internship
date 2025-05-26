@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Parent Menu -->
+    <menuitem id="menu_for_sample_module"
+              name="Sample Menu"
+              sequence="2"/>
+
+    <!-- Child menu linked to action -->
+    <menuitem id="menu_for_model_one"
+              name="Models "
+              action="action_for_model_one"
+              parent="menu_for_sample_module"
+              sequence="1"/>
+
+    <menuitem id="menu_for_model_one_lines"
+              name="Model Lines"
+              action="action_for_model_one_lines"
+              parent="menu_for_sample_module"
+              sequence="2"/>
+
+     <menuitem id="menu_for_sample_wizard"
+              name="My wizard"
+              action="action_for_sample_wizard"
+              parent="menu_for_sample_module"
+              sequence="3"/>  
+             
+     <menuitem id="menu_for_my_employee"
+              name="Employee"
+	      action="action_for_my_employee"
+	      parent='menu_for_sample_module'
+	      sequence="4" /> 
+                       
+</odoo>
